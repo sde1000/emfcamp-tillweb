@@ -1,0 +1,6 @@
+*~
+*.pid
+*.log
+/static/
+/emftill/db.sqlite3
+__pycache__

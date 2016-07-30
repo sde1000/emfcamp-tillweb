@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+pidfile=${DIR}/tillweb.pid
+
+cd "${DIR}/emftill"
+
+export DJANGO_SETTINGS_MODULE=emftill.settings_production
+export LANG=en_GB.UTF8
+export LC_CTYPE=en_GB.UTF8
+mkdir -p "${DIR}/static"
+python3 manage.py collectstatic --noinput
+uwsgi_python3 --stop ${pidfile} || echo "No daemon was running"
+sleep 2
+exec uwsgi_python3 \
+     --socket 127.0.0.1:3861 \
+     --wsgi-file emftill/wsgi.py \
+     --threads 4 \
+     --master \
+     --pidfile ${pidfile} \
+     --daemonize ${DIR}/uwsgi.log
