@@ -54,4 +54,14 @@ entirely by volunteers!  Want to help out?  Follow this link!</a></p>
 <p>Pull requests welcome.  If you improve the web service or display
 board software, your changes may be made live during EMF!</p>
 
+<p>A simple JSON interface is available:</p>
+<ul>
+  <li><a href="http://bar.emfcamp.org/locations.json">http://bar.emfcamp.org/locations.json</a>
+  lists the groups of stock that are on sale at the moment</li>
+  <li>http://bar.emfcamp.org/location/[name].json lists stock on sale in a
+  location.  The big price display boards behind the bar fetch
+  from <a href="http://bar.emfcamp.org/location/Bar.json">http://bar.emfcamp.org/location/Bar.json</a>.</li>
+  <li><a href="http://bar.emfcamp.org/stock.json">http://bar.emfcamp.org/stock.json</a> lists everything we have left in stock.</li>
+</ul>
+
 {% endblock %}
